@@ -32,15 +32,15 @@
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/get_ready_textSize"
             android:textStyle="bold"/>
-        
+
         <FrameLayout
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/item_circular_color">
+            android:background="@drawable/item_circular_color_border">
             
             <ProgressBar
-                android:id="@+id/progressBar"
+                android:id="@+id/progressBarRest"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
@@ -72,7 +72,94 @@
 
         </FrameLayout>
         
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/upcoming_exercise"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/textViewUpcomingExercise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/exercise_name_textSize"
+            android:textStyle="bold"
+            tools:text="Exercise Name"/>
+
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linearLayoutExerciseView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbarExerciseActivity"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+        
+        <ImageView
+            android:id="@+id/imageViewExercise"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:contentDescription="@string/image"
+            android:src="@drawable/ic_jumping_jacks"/>
+
+        <TextView
+            android:id="@+id/textViewExerciseName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Exercise"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/exercise_name_textSize"
+            android:textStyle="bold"/>
+
+        <FrameLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/item_circular_color_border">
+
+            <ProgressBar
+                android:id="@+id/progressBarExercise"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center"
+                android:background="@drawable/circular_progress_bar_gray"
+                android:indeterminate="false"
+                android:max="30"
+                android:progress="100"
+                android:progressDrawable="@drawable/circular_progress_bar"
+                android:rotation="-90"/>
+
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="@drawable/item_circular_color_accent_background"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/textViewExerciseTimer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    tools:text="30"/>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

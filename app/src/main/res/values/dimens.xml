@@ -6,4 +6,5 @@
     <dimen name="start_button_margin_top">20dp</dimen>
     <dimen name="start_button_label_textSize">22sp</dimen>
     <dimen name="get_ready_textSize">22sp</dimen>
+    <dimen name="exercise_name_textSize">18sp</dimen>
 </resources>
