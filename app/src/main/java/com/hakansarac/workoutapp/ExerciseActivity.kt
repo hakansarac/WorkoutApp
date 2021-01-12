@@ -1,5 +1,7 @@
 package com.hakansarac.workoutapp
 
+import android.media.MediaPlayer
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -22,6 +24,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var exerciseTimer: CountDownTimer? = null
     private var exerciseProgress = 30
 
+    private var player : MediaPlayer? = null
     private var tts: TextToSpeech? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,6 +83,18 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
 
     private fun setupRestView(){
+
+        try{
+            //val soundURI = Uri.parse("android:resource://com.hakansarac.workoutapp/"+R.raw.press_start)
+            player = MediaPlayer.create(applicationContext,R.raw.press_start)
+            if(player!=null) {
+                player!!.isLooping = false
+                player!!.start()
+            }
+        }catch(e:Exception){
+            e.printStackTrace()
+        }
+
         linearLayoutRestView.visibility = View.VISIBLE
         linearLayoutExerciseView.visibility = View.GONE
         if(restTimer!= null){
@@ -117,6 +132,10 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         if(tts!=null){
             tts!!.stop()
             tts!!.shutdown()
+        }
+
+        if(player!=null){
+            player!!.stop()
         }
 
         super.onDestroy()
