@@ -3,11 +3,15 @@ package com.hakansarac.workoutapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.speech.tts.TextToSpeech
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_exercise.*
+import java.util.*
+import kotlin.collections.ArrayList
 
-class ExerciseActivity : AppCompatActivity() {
+class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private var exercisesList : ArrayList<Exercise>? = null
     private var currentExercise = -1
@@ -17,6 +21,8 @@ class ExerciseActivity : AppCompatActivity() {
 
     private var exerciseTimer: CountDownTimer? = null
     private var exerciseProgress = 30
+
+    private var tts: TextToSpeech? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +37,7 @@ class ExerciseActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        tts = TextToSpeech(this,this)
         exercisesList = Constants.defaultExercisesList()
 
         setupRestView()
@@ -90,6 +97,7 @@ class ExerciseActivity : AppCompatActivity() {
             exerciseTimer!!.cancel()
             exerciseProgress = 30
         }
+        speakOut(exercisesList!![currentExercise].getName())
         setExerciseProgressBar()
         imageViewExercise.setImageResource(exercisesList!![currentExercise].getImage())
         textViewExerciseName.text = exercisesList!![currentExercise].getName()
@@ -100,6 +108,30 @@ class ExerciseActivity : AppCompatActivity() {
             restTimer!!.cancel()
             restProgress = 10
         }
+
+        if(exerciseTimer!= null){
+            exerciseTimer!!.cancel()
+            exerciseProgress = 30
+        }
+
+        if(tts!=null){
+            tts!!.stop()
+            tts!!.shutdown()
+        }
+
         super.onDestroy()
+    }
+
+    override fun onInit(p0: Int) {
+        if(p0 == TextToSpeech.SUCCESS){
+            val result = tts!!.setLanguage(Locale.ENGLISH)
+            if(result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED)
+                Log.e("TTS","The language specified is not supported")
+        }else
+            Log.e("TTS","Initialization is failed.")
+    }
+
+    private fun speakOut(text : String){
+        tts!!.speak(text,TextToSpeech.QUEUE_FLUSH,null,"")
     }
 }
