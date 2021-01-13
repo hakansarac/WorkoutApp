@@ -1,5 +1,6 @@
 package com.hakansarac.workoutapp
 
+import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -84,8 +85,11 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                     exerciseAdapter!!.notifyDataSetChanged()
                     setupRestView()
                 }
-                else
-                    Toast.makeText(this@ExerciseActivity,"Congratulations!",Toast.LENGTH_SHORT).show()
+                else {
+                    finish()
+                    val intent = Intent(this@ExerciseActivity,FinishActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }.start()
     }

@@ -4,4 +4,8 @@
     <string name="start">START</string>
     <string name="get_ready">GET READY FOR</string>
     <string name="upcoming_exercise">UPCOMING EXERCISE: </string>
+    <string name="end">END</string>
+    <string name="congrats">CONGRATULATIONS!</string>
+    <string name="finish_message">You have finished the workout!</string>
+    <string name="finish_button">FINISH</string>
 </resources>
