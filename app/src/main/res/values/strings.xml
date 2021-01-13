@@ -8,4 +8,7 @@
     <string name="congrats">CONGRATULATIONS!</string>
     <string name="finish_message">You have finished the workout!</string>
     <string name="finish_button">FINISH</string>
+    <string name="dialog_question">Are you sure?</string>
+    <string name="yes_button">Yes</string>
+    <string name="no_button">No</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.hakansarac.workoutapp
 
+import android.app.Dialog
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
@@ -12,6 +13,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_exercise.*
+import kotlinx.android.synthetic.main.dialog_custom_back_confirmation.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -41,7 +43,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             actionbar.setDisplayHomeAsUpEnabled(true)
 
         toolbarExerciseActivity.setNavigationOnClickListener {
-            onBackPressed()
+            dialogCustomForBackButton()
         }
 
         tts = TextToSpeech(this,this)
@@ -174,4 +176,18 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         recyclerViewExerciseStatus.adapter = exerciseAdapter
     }
 
+
+    private fun dialogCustomForBackButton(){
+        val dialogCustom = Dialog(this)
+        dialogCustom.setContentView(R.layout.dialog_custom_back_confirmation)
+
+        dialogCustom.textViewYes.setOnClickListener {
+            finish()
+            dialogCustom.dismiss()
+        }
+        dialogCustom.textViewNo.setOnClickListener {
+            dialogCustom.dismiss()
+        }
+        dialogCustom.show()
+    }
 }
