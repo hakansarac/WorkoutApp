@@ -40,7 +40,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         setSupportActionBar(toolbarExerciseActivity)
         val actionbar = supportActionBar
         if(actionbar!=null)
-            actionbar.setDisplayHomeAsUpEnabled(true)
+            actionbar.setDisplayHomeAsUpEnabled(true)     //back button symbol
 
         toolbarExerciseActivity.setNavigationOnClickListener {
             dialogCustomForBackButton()
