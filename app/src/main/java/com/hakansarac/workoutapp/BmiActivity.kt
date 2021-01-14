@@ -9,6 +9,12 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 
 class BmiActivity : AppCompatActivity() {
+
+    val METRIC_UNITS_VIEW = "METRIC_UNIT_VIEW"
+    val US_UNITS_VIEW = "US_UNIT_VIEW"
+
+    var currentVisibleView : String = METRIC_UNITS_VIEW
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bmi)
@@ -24,12 +30,32 @@ class BmiActivity : AppCompatActivity() {
         }
 
 
-        buttonCalculateBmi.setOnClickListener {
-            if (validateMetricUnits()){
-                val weightInput : Float = editTextMetricWeight.text.toString().toFloat()
-                val heightInput : Float = editTextMetricHeight.text.toString().toFloat()/100      //from cm to m
-                val bmi = weightInput/(heightInput*heightInput)
-                displayBmiResult(bmi)
+        buttonCalculator.setOnClickListener {
+            if(currentVisibleView == METRIC_UNITS_VIEW) {
+                if (validateMetricUnits()) {
+                    val weightMetricInput: Float = editTextMetricWeight.text.toString().toFloat()
+                    val heightMetricInput: Float = editTextMetricHeight.text.toString().toFloat() / 100      //from cm to m
+                    val bmi = weightMetricInput / (heightMetricInput * heightMetricInput)
+                    displayBmiResult(bmi)
+                }
+            }else{
+                if(validateUsUnits()){
+                    val weightUsInput : Float = editTextUsWeight.text.toString().toFloat()
+                    val feetUsInput : String = editTextUsHeightFeet.text.toString()
+                    val inchUsInput : String = editTextUsHeightInch.text.toString()
+
+                    val heightValue = inchUsInput.toFloat() + feetUsInput.toFloat() * 12
+                    val bmi = 703 * (weightUsInput / (heightValue * heightValue))
+                    displayBmiResult(bmi)
+                }
+            }
+        }
+
+        makeVisibleMetric()
+        radioGroupUnits.setOnCheckedChangeListener{group,checkedId ->
+            when(checkedId){
+                R.id.radioButtonMetric -> makeVisibleMetric()
+                else -> makeVisibleUs()
             }
         }
     }
@@ -40,6 +66,16 @@ class BmiActivity : AppCompatActivity() {
         if(editTextMetricWeight.text.toString().isEmpty() || editTextMetricHeight.text.toString().isEmpty()){
             isValid = false
             Toast.makeText(this,"Please enter both of values correctly.",Toast.LENGTH_SHORT).show()
+        }
+        return isValid
+    }
+
+    private fun validateUsUnits():Boolean{
+        var isValid = true
+
+        if(editTextUsHeightFeet.text.toString().isEmpty() || editTextUsHeightInch.text.toString().isEmpty() || editTextUsWeight.text.toString().isEmpty()) {
+            isValid = false
+            Toast.makeText(this,"Please enter all of values correctly.",Toast.LENGTH_SHORT).show()
         }
         return isValid
     }
@@ -81,15 +117,43 @@ class BmiActivity : AppCompatActivity() {
                 bmiDescription = "OMG! You are in a very dangerous condition! Act now!"
             }
         }
-        textViewYourResult.visibility = View.VISIBLE
-        textViewBmiResult.visibility = View.VISIBLE
-        textViewBmiType.visibility = View.VISIBLE
-        textViewBmiDescription.visibility = View.VISIBLE
+
+        linearLayoutBmiResult.visibility = View.VISIBLE
 
         val bmiResult = BigDecimal(bmi.toDouble()).setScale(2,RoundingMode.HALF_EVEN).toString()
 
         textViewBmiResult.text = bmiResult
         textViewBmiType.text = bmiLabel
         textViewBmiDescription.text = bmiDescription
+    }
+
+
+    private fun makeVisibleMetric(){
+        currentVisibleView = METRIC_UNITS_VIEW
+
+        editTextMetricHeight.text?.clear()
+        editTextMetricWeight.text?.clear()
+        textInputLayoutMetricHeight.visibility = View.VISIBLE
+        textInputLayoutMetricWeight.visibility = View.VISIBLE
+
+        linearLayoutUsUnitHeight.visibility = View.GONE
+        textInputLayoutUsWeight.visibility = View.GONE
+
+        linearLayoutBmiResult.visibility = View.INVISIBLE
+    }
+
+    private fun makeVisibleUs(){
+        currentVisibleView = US_UNITS_VIEW
+
+        textInputLayoutMetricHeight.visibility = View.GONE
+        textInputLayoutMetricWeight.visibility = View.GONE
+
+        editTextUsHeightFeet.text?.clear()
+        editTextUsHeightInch.text?.clear()
+        editTextUsWeight.text?.clear()
+        linearLayoutUsUnitHeight.visibility = View.VISIBLE
+        textInputLayoutUsWeight.visibility = View.VISIBLE
+
+        linearLayoutBmiResult.visibility = View.INVISIBLE
     }
 }
