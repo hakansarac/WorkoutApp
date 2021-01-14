@@ -15,5 +15,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this,ExerciseActivity::class.java)
             startActivity(intent)
         }
+
+        linearLayoutBMI.setOnClickListener {
+            val intent = Intent(this,BmiActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

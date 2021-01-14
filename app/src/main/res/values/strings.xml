@@ -11,4 +11,6 @@
     <string name="dialog_question">Are you sure?</string>
     <string name="yes_button">Yes</string>
     <string name="no_button">No</string>
+    <string name="bmi">BMI</string>
+    <string name="calculator">Calculator</string>
 </resources>
