@@ -8,6 +8,6 @@
     <dimen name="get_ready_textSize">22sp</dimen>
     <dimen name="exercise_name_textSize">18sp</dimen>
     <dimen name="dialog_custom_margin">10dp</dimen>
-    <dimen name="bmi_textSize">18sp</dimen>
+    <dimen name="bmi_textSize">22sp</dimen>
     <dimen name="bmi_input_textSize">16sp</dimen>
 </resources>

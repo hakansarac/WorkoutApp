@@ -26,9 +26,9 @@ class BmiActivity : AppCompatActivity() {
 
         buttonCalculateBmi.setOnClickListener {
             if (validateMetricUnits()){
-                val weightInput : Float = editTextWeight.text.toString().toFloat()
-                val heightInput : Float = editTextHeight.text.toString().toFloat()/100      //from cm to m
-                val bmi = weightInput/heightInput*heightInput
+                val weightInput : Float = editTextMetricWeight.text.toString().toFloat()
+                val heightInput : Float = editTextMetricHeight.text.toString().toFloat()/100      //from cm to m
+                val bmi = weightInput/(heightInput*heightInput)
                 displayBmiResult(bmi)
             }
         }
@@ -37,7 +37,7 @@ class BmiActivity : AppCompatActivity() {
     private fun validateMetricUnits():Boolean{
         var isValid = true
 
-        if(editTextWeight.text.toString().isEmpty() || editTextHeight.text.toString().isEmpty()){
+        if(editTextMetricWeight.text.toString().isEmpty() || editTextMetricHeight.text.toString().isEmpty()){
             isValid = false
             Toast.makeText(this,"Please enter both of values correctly.",Toast.LENGTH_SHORT).show()
         }
