@@ -13,5 +13,106 @@
         android:layout_height="?android:attr/actionBarSize"
         android:background="@android:color/white"/>
 
+    <LinearLayout
+        android:id="@+id/linearLayoutUnitsView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbarBmiActivity"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutWeight"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="WEIGHT(kg):"
+                android:inputType="numberDecimal"
+                android:textSize="@dimen/bmi_input_textSize"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutHeight"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextHeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="HEIGHT(cm):"
+                android:inputType="numberDecimal"
+                android:textSize="@dimen/bmi_input_textSize"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        
+        <LinearLayout
+            android:id="@+id/linearLayoutBmiResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical"
+            android:visibility="visible"
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/textViewYourResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="YOUR BMI"
+                android:textAllCaps="true"
+                android:visibility="invisible"
+                android:textSize="16sp"/>
+            
+            <TextView
+                android:id="@+id/textViewBmiResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textSize="@dimen/bmi_textSize"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold"
+                tools:text="15.00"/>
+
+            <TextView
+                android:id="@+id/textViewBmiType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textSize="@dimen/bmi_textSize"
+                tools:text="Normal"/>
+
+            <TextView
+                android:id="@+id/textViewBmiDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textSize="@dimen/bmi_textSize"
+                tools:text="Normal"/>
+
+        </LinearLayout>
+        
+        <Button
+            android:id="@+id/buttonCalculateBmi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="35dp"
+            android:background="@color/colorAccent"
+            android:text="CALCULATE"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/bmi_textSize"/>
+        
+    </LinearLayout>
 
 </RelativeLayout>
