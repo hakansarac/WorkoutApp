@@ -2,7 +2,9 @@ package com.hakansarac.workoutapp
 
 class Constants {
     companion object{
-
+        /**
+         * List of exercises
+         */
         fun defaultExercisesList():ArrayList<Exercise>{
             val exercisesList = ArrayList<Exercise>()
             val jumpingJacks = Exercise(

@@ -27,6 +27,9 @@ class FinishActivity : AppCompatActivity() {
         addDateToDatabase()
     }
 
+    /**
+     * adding the date of finished exercise
+     */
     private fun addDateToDatabase(){
         val calendar = Calendar.getInstance()
         val dateTime = calendar.time

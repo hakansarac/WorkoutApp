@@ -24,6 +24,9 @@ class SqliteOpenHelper(context: Context, factory : SQLiteDatabase.CursorFactory?
         onCreate(p0)
     }
 
+    /**
+     * Add a date to database when user finish an exercise
+     */
     fun addDate(date:String){
         val values = ContentValues()
         values.put(COLUMN_COMPLETED_DATE,date)
@@ -32,6 +35,9 @@ class SqliteOpenHelper(context: Context, factory : SQLiteDatabase.CursorFactory?
         db.close()
     }
 
+    /**
+     * get all completed exercise dates from database
+     */
     fun getAllCompletedDates() : ArrayList<String>{
         val listDates : ArrayList<String> = ArrayList<String>()
         val db = this.readableDatabase

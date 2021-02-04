@@ -134,6 +134,9 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         textViewExerciseName.text = exercisesList!![currentExercise].getName()
     }
 
+    /**
+     * What to do if the activity is destroyed
+     */
     override fun onDestroy() {
         if(restTimer!= null){
             restTimer!!.cancel()
@@ -157,6 +160,9 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         super.onDestroy()
     }
 
+    /**
+     * initialize of TexttoSpeech
+     */
     override fun onInit(p0: Int) {
         if(p0 == TextToSpeech.SUCCESS){
             val result = tts!!.setLanguage(Locale.ENGLISH)
@@ -166,6 +172,9 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             Log.e("TTS","Initialization is failed.")
     }
 
+    /**
+     * voice prompt to say exercise name
+     */
     private fun speakOut(text : String){
         tts!!.speak(text,TextToSpeech.QUEUE_FLUSH,null,"")
     }
@@ -176,7 +185,9 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         recyclerViewExerciseStatus.adapter = exerciseAdapter
     }
 
-
+    /**
+     * custom dialog to ask if the user is sure to cancel exercise
+     */
     private fun dialogCustomForBackButton(){
         val dialogCustom = Dialog(this)
         dialogCustom.setContentView(R.layout.dialog_custom_back_confirmation)

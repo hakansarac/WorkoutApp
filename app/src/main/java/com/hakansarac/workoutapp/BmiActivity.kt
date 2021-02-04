@@ -51,7 +51,8 @@ class BmiActivity : AppCompatActivity() {
             }
         }
 
-        makeVisibleMetric()
+        makeVisibleMetric()     //select the unit as metric by default
+        //then check the changes of selected element of radio group
         radioGroupUnits.setOnCheckedChangeListener{group,checkedId ->
             when(checkedId){
                 R.id.radioButtonMetric -> makeVisibleMetric()
@@ -60,6 +61,9 @@ class BmiActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * check if all of the blanks are filled
+     */
     private fun validateMetricUnits():Boolean{
         var isValid = true
 
@@ -70,6 +74,9 @@ class BmiActivity : AppCompatActivity() {
         return isValid
     }
 
+    /**
+     * check if all of the blanks are filled
+     */
     private fun validateUsUnits():Boolean{
         var isValid = true
 
@@ -80,6 +87,10 @@ class BmiActivity : AppCompatActivity() {
         return isValid
     }
 
+    /**
+     * check the weight and height;
+     * give a message according to calculated values
+     */
     private fun displayBmiResult(bmi:Float){
         val bmiLabel : String
         val bmiDescription : String
@@ -127,7 +138,9 @@ class BmiActivity : AppCompatActivity() {
         textViewBmiDescription.text = bmiDescription
     }
 
-
+    /**
+     * set the values as Metric Unit type
+     */
     private fun makeVisibleMetric(){
         currentVisibleView = METRIC_UNITS_VIEW
 
@@ -142,6 +155,9 @@ class BmiActivity : AppCompatActivity() {
         linearLayoutBmiResult.visibility = View.INVISIBLE
     }
 
+    /**
+     * set the values as Us Unit Type
+     */
     private fun makeVisibleUs(){
         currentVisibleView = US_UNITS_VIEW
 

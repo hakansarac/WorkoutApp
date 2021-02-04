@@ -27,6 +27,10 @@ class HistoryActivity : AppCompatActivity() {
         getDatesList()
     }
 
+    /**
+     * Get the data from sqlite and show them as items of RecyclerView.
+     * History Adapter is used to setup the RecyclerView.
+     */
     private fun getDatesList(){
         val dbHandler = SqliteOpenHelper(this,null)
         val allDates = dbHandler.getAllCompletedDates()
@@ -44,8 +48,5 @@ class HistoryActivity : AppCompatActivity() {
             recyclerViewHistory.visibility = View.GONE
             textViewNoDataAvailable.visibility = View.VISIBLE
         }
-
-
-
     }
 }
