@@ -13,7 +13,7 @@ class BmiActivity : AppCompatActivity() {
     val METRIC_UNITS_VIEW = "METRIC_UNIT_VIEW"
     val US_UNITS_VIEW = "US_UNIT_VIEW"
 
-    var currentVisibleView : String = METRIC_UNITS_VIEW
+    var currentVisibleView : String = METRIC_UNITS_VIEW     // A variable to hold a value to make visible a selected view
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,8 +22,8 @@ class BmiActivity : AppCompatActivity() {
         setSupportActionBar(toolbarBmiActivity)
         val actionBar = supportActionBar
         if(actionBar!=null){
-            actionBar.setDisplayHomeAsUpEnabled(true)
-            actionBar.title = "CALCULATE BMI"
+            actionBar.setDisplayHomeAsUpEnabled(true)       // set back button
+            actionBar.title = "CALCULATE BMI"               // Setting a title in the action bar.
         }
         toolbarBmiActivity.setNavigationOnClickListener {
             onBackPressed()
@@ -54,6 +54,7 @@ class BmiActivity : AppCompatActivity() {
         makeVisibleMetric()     //select the unit as metric by default
         //then check the changes of selected element of radio group
         radioGroupUnits.setOnCheckedChangeListener{group,checkedId ->
+            // Here is the checkId is METRIC UNITS view then make the view visible else US UNITS view.
             when(checkedId){
                 R.id.radioButtonMetric -> makeVisibleMetric()
                 else -> makeVisibleUs()
